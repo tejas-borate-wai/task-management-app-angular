@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-end mb-3">
+        <a routerLink="/add-project"><button class="btn btn-primary">
+                <i class="bi bi-plus-lg"></i> Add Project
+            </button></a>
+    </div>
+
+    <div class="card p-4 text-center shadow-sm">
+        <h2 class="fw-bold">Welcome <span class="text-primary">{{loggedInUser | titlecase}}</span> To Your Dashboard
+        </h2>
+
+    </div>
+
+    <!-- Stats Section -->
+    <!-- <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow-sm">
+                <h4 class="fw-bold">Total Projects</h4>
+                <p class="display-6 text-primary">12</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow-sm">
+                <h4 class="fw-bold">Ongoing Projects</h4>
+                <p class="display-6 text-warning">5</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 text-center shadow-sm">
+                <h4 class="fw-bold">Completed Projects</h4>
+                <p class="display-6 text-success">7</p>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">All Projects</h5>
+        </div>
+        <div class="card-body p-0">
+            <div *ngFor="let project of projects">
+                <app-project-card [project]="project"></app-project-card>
+            </div>
+        </div>
+    </div>
+
+
+</div>

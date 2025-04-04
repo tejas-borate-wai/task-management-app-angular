@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#"><img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGqOtlnZxqJCQlvickXrFj6EdRwC7_KGZnmS4yNWDeA6sS_kAQQRiva_M&s=10"
+                height="45"></a>
+
+        <!-- Toggle Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/projects">Projects</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown" *ngIf="loggedInUser">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle"></i> Profile
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <span class="dropdown-item">
+                                <strong>Name:</strong> {{ loggedInUser.name | titlecase }}
+                            </span>
+                        </li>
+                        <li>
+                            <span class="dropdown-item">
+                                <strong>Username:</strong> {{ loggedInUser.username }}
+                            </span>
+                        </li>
+                        <li>
+                            <span class="dropdown-item">
+                                <strong>Password:</strong> {{ loggedInUser.password }} <!-- Hide for security -->
+                            </span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li>
+                            <button class="dropdown-item text-danger" (click)="logout()">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

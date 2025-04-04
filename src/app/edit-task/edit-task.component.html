@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <div class="card p-4 shadow">
+        <h3 class="text-center">Edit Task</h3>
+        <form (ngSubmit)="updateTask()">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="taskDetails.title" name="title" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Assigned To</label>
+                <input type="text" class="form-control" [(ngModel)]="taskDetails.assignedTo" name="assignedTo"
+                    required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select class="form-select" [(ngModel)]="taskDetails.status" name="status" required>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estimate (hrs)</label>
+                <input type="number" class="form-control" [(ngModel)]="taskDetails.estimate" name="estimate" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Time Spent (hrs)</label>
+                <input type="number" class="form-control" [(ngModel)]="taskDetails.timeSpent" name="timeSpent"
+                    required />
+            </div>
+
+            <a>
+                <button type="submit" class="btn btn-primary">Update Task</button>
+                <button [routerLink]="['/']" class="btn btn-secondary px-4 ms-3">
+                    Cancel
+                </button>
+
+
+            </a>
+        </form>
+    </div>
+</div>

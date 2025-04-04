@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-lg">
+        <h3 class="text-center mb-4 fw-bold text-primary">Edit Project</h3>
+
+        <form (ngSubmit)="saveProject()">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label for="title" class="fw-bold">Project Title</label>
+                    <input id="title" type="text" class="form-control" [(ngModel)]="project.title" name="title"
+                        required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Created By</label>
+                    <input type="text" class="form-control bg-light" [(ngModel)]="project.createdBy" name="createdBy"
+                        readonly>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Project Manager</label>
+                    <input type="text" class="form-control" [(ngModel)]="project.projectManager" name="projectManager"
+                        required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Creation Date</label>
+                    <input type="date" class="form-control bg-light" [(ngModel)]="project.creationDate"
+                        name="creationDate" readonly>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Start Date</label>
+                    <input type="date" class="form-control" [(ngModel)]="project.startDate" name="startDate"
+                        (change)="calculateDueDate()">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">End Date</label>
+                    <input type="date" class="form-control" [(ngModel)]="project.endDate" name="endDate"
+                        (change)="calculateDueDate()">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Team Members</label>
+                    <input type="text" class="form-control" [(ngModel)]="project.teamMembers" name="teamMembers">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="fw-bold">Due Date</label>
+                    <input type="text" class="form-control bg-light text-success fw-bold" [(ngModel)]="project.dueDate"
+                        name="dueDate" readonly>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-4">Update Project</button>
+                <button type="button" class="btn btn-secondary ms-3 px-4"
+                    (click)="router.navigate(['/'])">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

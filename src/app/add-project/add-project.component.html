@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+    <div class="card p-4 shadow-sm">
+        <h3 class="fw-bold mb-3">Add New Project</h3>
+        <form (submit)="saveProject()">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" [(ngModel)]="project.title" name="title" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" rows="3" [(ngModel)]="project.description" name="description"
+                    required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Created By</label>
+                <input type="text" class="form-control" [(ngModel)]="project.createdBy" name="createdBy" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Project Manager</label>
+                <input type="text" class="form-control" [(ngModel)]="project.projectManager" name="projectManager"
+                    required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-control" [(ngModel)]="project.startDate" name="startDate" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-control" [(ngModel)]="project.endDate" name="endDate" required>
+                </div>
+
+            </div>
+
+            <div class="mb-3 mt-3">
+                <label class="form-label">Team Members</label>
+                <input type="text" class="form-control" [(ngModel)]="project.teamMembers" name="teamMembers"
+                    placeholder="Enter names separated by commas" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Save Project</button>
+            <a routerLink="/"><button type="button" class="btn btn-secondary ms-3">Cancel</button></a>
+
+        </form>
+    </div>
+</div>
