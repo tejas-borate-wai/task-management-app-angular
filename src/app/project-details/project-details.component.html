@@ -92,18 +92,71 @@
             </a>
         </div>
     </div>
-
     <div class="mt-4">
-        <h3>Project Tasks - </h3>
+        <h3 class="mb-4">Project Tasks</h3>
 
-        <div *ngIf="projectRelatedTasks.length > 0; else noTasks">
-            <app-task-details class="" *ngFor="let task of projectRelatedTasks" [task]="task"
+        <!-- Filter & Sort Controls -->
+        <div class="card shadow-sm mb-4 border-0" style="background-color: #0d6efd;">
+            <div class="row g-3 align-items-end p-3">
+
+                <!-- Task Search -->
+                <div class="col-md-4">
+                    <label class="form-label text-white fw-semibold mb-1">Search Task</label>
+                    <input type="text" class="form-control form-control-sm shadow-sm border-0"
+                        placeholder="Search tasks..." [(ngModel)]="searchTaskQuery" (input)="filterTasksBySearch()" />
+                </div>
+
+                <!-- Sort Field -->
+                <div class="col-md-2">
+                    <label class="form-label text-white fw-semibold mb-1">Sort By</label>
+                    <select class="form-select form-select-sm shadow-sm border-0" [(ngModel)]="selectedSortField"
+                        (change)="sortTasks(selectedSortField, selectedSortOrder)">
+                        <option selected>Select</option>
+                        <option value="title">Task Name</option>
+                        <option value="status">Status</option>
+                        <option value="estimate">Estimate</option>
+                    </select>
+                </div>
+
+                <!-- Sort Order -->
+                <div class="col-md-2">
+                    <label class="form-label text-white fw-semibold mb-1">Order</label>
+                    <select class="form-select form-select-sm shadow-sm border-0" [(ngModel)]="selectedSortOrder"
+                        (change)="sortTasks(selectedSortField, selectedSortOrder)">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
+
+                <!-- Filter by Status -->
+                <div class="col-md-3">
+                    <label class="form-label text-white fw-semibold mb-1">Filter by Status</label>
+                    <select class="form-select form-select-sm shadow-sm border-0" #statusSelect
+                        (change)="filterTasksByStatus(statusSelect.value)">
+                        <option value="all">All Statuses</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Task List -->
+        <div *ngIf="filteredTasks.length > 0; else noTasks">
+            <app-task-details class="mb-3" *ngFor="let task of filteredTasks" [task]="task"
                 [projectName]="project.title" (taskDeleted)="handleTaskDeleted($event)">
             </app-task-details>
         </div>
 
+
+
+        <!-- No Tasks Template -->
         <ng-template #noTasks>
-            <p class="text-muted">No tasks assigned to this project yet.</p>
+            <p class="text-muted text-center mt-3">No tasks assigned to this project yet.</p>
         </ng-template>
     </div>
+
 </div>

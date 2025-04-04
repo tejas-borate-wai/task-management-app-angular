@@ -13,6 +13,8 @@
 
     </div>
 
+
+
     <!-- Stats Section -->
     <!-- <div class="row mt-4">
         <div class="col-md-4">
@@ -34,17 +36,57 @@
             </div>
         </div>
     </div> -->
-
     <div class="card mt-4 shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">All Projects</h5>
-        </div>
-        <div class="card-body p-0">
-            <div *ngFor="let project of projects">
-                <app-project-card [project]="project"></app-project-card>
+        <!-- Header -->
+        <div class="card-header bg-primary text-white py-3">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <h5 class="mb-0">All Projects</h5>
+
+                <div class="d-flex flex-wrap align-items-center gap-2 mt-2 mt-md-0">
+
+                    <!-- Search -->
+                    <div class="input-group input-group-sm w-auto">
+                        <input type="text" class="form-control" placeholder="Search project..."
+                            [(ngModel)]="searchQuery" (input)="filterProjects()" />
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    </div>
+
+                    <!-- Sort By -->
+                    <div class="d-flex align-items-center gap-1">
+                        <label class="text-white mb-0 fw-semibold">Sort By:</label>
+                        <select #sortField class="form-select form-select-sm w-auto"
+                            (change)="sortProjects(sortField.value, sortOrder.value)">
+                            <option selected disabled>Select</option>
+                            <option value="title">Name</option>
+                            <option value="creationDate">Creation Date</option>
+                            <option value="startDate">Start Date</option>
+                            <option value="endDate">End Date</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort Order -->
+                    <div class="d-flex align-items-center gap-1">
+                        <label class="text-white mb-0 fw-semibold">Order:</label>
+                        <select #sortOrder class="form-select form-select-sm w-auto"
+                            (change)="sortProjects(sortField.value, sortOrder.value)">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
+        <!-- Project List -->
+        <div class="card-body p-2 mt-3">
+            <div *ngIf="filteredProjects.length > 0; else noProjects">
+                <app-project-card *ngFor="let project of filteredProjects" [project]="project"></app-project-card>
+            </div>
+
+            <ng-template #noProjects>
+                <p class="text-center text-muted mt-3">No projects found.</p>
+            </ng-template>
+        </div>
+    </div>
 
 </div>
