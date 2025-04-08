@@ -6,9 +6,9 @@
         </a>
 
         <!-- Toggle Button for Mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon "></span>
         </button>
 
         <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
@@ -26,7 +26,7 @@
                 <!-- Theme Toggle Switch -->
                 <li class="nav-item me-3 d-flex align-items-center">
                     <i class="bi bi-circle-half me-1"></i>
-                    <span class="me-2 fw-bold">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+                    <span class="me-2 fw-bold text-light">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
                     <div class="form-check form-switch m-0">
                         <input class="form-check-input" type="checkbox" id="themeToggle" (change)="toggleTheme()"
                             [checked]="isDarkMode" />
