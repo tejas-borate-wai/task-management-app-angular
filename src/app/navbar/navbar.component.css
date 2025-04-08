@@ -1,8 +1,29 @@
 /* Navbar Styling */
+/* Light Theme (custom) */
 .custom-navbar {
     background: linear-gradient(135deg, #7b00ff, #146aff);
-    /* Smooth Gradient */
     padding: 10px 15px;
+}
+
+/* Dark Theme */
+.dark-navbar {
+    background-color: #1e1e2f;
+    /* Or any dark shade you prefer */
+    color: white;
+    padding: 10px 15px;
+}
+
+.dark-navbar .nav-link {
+    color: #ddd !important;
+}
+
+.dark-navbar .dropdown-menu {
+    background-color: #2a2a3d;
+    color: white;
+}
+
+.dark-navbar .dropdown-item {
+    color: white;
 }
 
 /* Logo Styling */

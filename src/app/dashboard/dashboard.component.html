@@ -38,44 +38,59 @@
     </div> -->
     <div class="card mt-4 shadow-sm">
         <!-- Header -->
-        <div class="card-header bg-primary text-white py-3">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <h5 class="mb-0">All Projects</h5>
+        <div class="card-header text-white py-3 filtering-section">
+            <div class="container-fluid">
+                <div class="row align-items-center">
 
-                <div class="d-flex flex-wrap align-items-center gap-2 mt-2 mt-md-0">
-
-                    <!-- Search -->
-                    <div class="input-group input-group-sm w-auto">
-                        <input type="text" class="form-control" placeholder="Search project..."
-                            [(ngModel)]="searchQuery" (input)="filterProjects()" />
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <!-- Heading -->
+                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+                        <h5 class="mb-0">All Projects</h5>
                     </div>
 
-                    <!-- Sort By -->
-                    <div class="d-flex align-items-center gap-1">
-                        <label class="text-white mb-0 fw-semibold">Sort By:</label>
-                        <select #sortField class="form-select form-select-sm w-auto"
-                            (change)="sortProjects(sortField.value, sortOrder.value)">
-                            <option selected disabled>Select</option>
-                            <option value="title">Name</option>
-                            <option value="creationDate">Creation Date</option>
-                            <option value="startDate">Start Date</option>
-                            <option value="endDate">End Date</option>
-                        </select>
-                    </div>
+                    <!-- Controls -->
+                    <div class="col-12 col-lg-9">
+                        <div class="row g-3">
 
-                    <!-- Sort Order -->
-                    <div class="d-flex align-items-center gap-1">
-                        <label class="text-white mb-0 fw-semibold">Order:</label>
-                        <select #sortOrder class="form-select form-select-sm w-auto"
-                            (change)="sortProjects(sortField.value, sortOrder.value)">
-                            <option value="asc">Ascending</option>
-                            <option value="desc">Descending</option>
-                        </select>
+                            <!-- Search -->
+                            <div class="col-12 col-md-4">
+                                <label class="text-white fw-semibold mb-1 d-block">Search</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" class="form-control" placeholder="Search project..."
+                                        [(ngModel)]="searchQuery" (input)="filterProjects()" />
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                </div>
+                            </div>
+
+                            <!-- Sort By -->
+                            <div class="col-12 col-md-4">
+                                <label class="text-white fw-semibold mb-1 d-block">Sort By</label>
+                                <select #sortField class="form-select form-select-sm"
+                                    (change)="sortProjects(sortField.value, sortOrder.value)">
+                                    <option selected disabled>Select</option>
+                                    <option value="title">Name</option>
+                                    <option value="creationDate">Creation Date</option>
+                                    <option value="startDate">Start Date</option>
+                                    <option value="endDate">End Date</option>
+                                </select>
+                            </div>
+
+                            <!-- Sort Order -->
+                            <div class="col-12 col-md-4">
+                                <label class="text-white fw-semibold mb-1 d-block">Order</label>
+                                <select #sortOrder class="form-select form-select-sm"
+                                    (change)="sortProjects(sortField.value, sortOrder.value)">
+                                    <option value="asc">Ascending</option>
+                                    <option value="desc">Descending</option>
+                                </select>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
         <!-- Project List -->
         <div class="card-body p-2 mt-3">

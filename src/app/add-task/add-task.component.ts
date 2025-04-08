@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-add-task',
-  imports: [CommonModule, FormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, RouterLink],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.css',
 })
 export class AddTaskComponent {
   constructor(private route: ActivatedRoute, private router: Router) {}
+
   taskDetails = {
     taskId: this.generateUniqueId(), // Generate unique ID
     projectId: '',
@@ -22,6 +23,11 @@ export class AddTaskComponent {
     estimate: '',
     timeSpent: '',
   };
+
+  ngOnInit() {
+    this.taskDetails.projectId = this.route.snapshot.paramMap.get('id') ?? '';
+    // console.log(this.taskDetails.projectId);
+  }
   saveTask() {
     this.taskDetails.projectId = this.route.snapshot.paramMap.get('id') ?? '';
     console.log(this.taskDetails);
