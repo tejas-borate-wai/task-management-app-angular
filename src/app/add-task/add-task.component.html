@@ -2,7 +2,7 @@
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Task Form</h2>
-    <form (ngSubmit)="saveTask()">
+    <form #taskForm="ngForm" (ngSubmit)="saveTask()" novalidate>
 
         <section class="mb-4">
             <h4 class="mb-3">Task Details</h4>
@@ -10,12 +10,15 @@
                 <div class="col-md-6">
                     <label for="title" class="form-label">Title:</label>
                     <input type="text" class="form-control" id="title" [(ngModel)]="taskDetails.title" name="title"
-                        required>
+                        required #title="ngModel">
+                    <div class="text-danger" *ngIf="title.invalid && title.touched">Title is required.</div>
                 </div>
                 <div class="col-md-6">
                     <label for="assignedTo" class="form-label">Assigned To:</label>
                     <input type="text" class="form-control" id="assignedTo" [(ngModel)]="taskDetails.assignedTo"
-                        name="assignedTo" required>
+                        name="assignedTo" required #assignedTo="ngModel">
+                    <div class="text-danger" *ngIf="assignedTo.invalid && assignedTo.touched">Assigned To is required.
+                    </div>
                 </div>
             </div>
         </section>
@@ -25,11 +28,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status:</label>
-                    <select class="form-select" id="status" [(ngModel)]="taskDetails.status" name="status" required>
+                    <select class="form-select" id="status" [(ngModel)]="taskDetails.status" name="status" required
+                        #status="ngModel">
+                        <option value="" disabled selected>Select status</option>
                         <option value="High">High</option>
                         <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
                     </select>
+                    <div class="text-danger" *ngIf="status.invalid && status.touched">Status is required.</div>
                 </div>
             </div>
         </section>
@@ -40,29 +46,35 @@
                 <div class="col-md-6">
                     <label for="assignedUser" class="form-label">Assigned User:</label>
                     <input type="text" class="form-control" id="assignedUser" [(ngModel)]="taskDetails.assignedUser"
-                        name="assignedUser" required>
+                        name="assignedUser" required #assignedUser="ngModel">
+                    <div class="text-danger" *ngIf="assignedUser.invalid && assignedUser.touched">Assigned User is
+                        required.
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <label for="estimate" class="form-label">Estimate (hours):</label>
                     <input type="number" class="form-control" id="estimate" [(ngModel)]="taskDetails.estimate"
-                        name="estimate" required>
+                        name="estimate" required min="0" #estimate="ngModel">
+                    <div class="text-danger" *ngIf="estimate.invalid && estimate.touched">Estimate is required and must
+                        be 0
+                        or more.</div>
                 </div>
                 <div class="col-md-3">
                     <label for="timeSpent" class="form-label">Time Spent (hours):</label>
                     <input type="number" class="form-control" id="timeSpent" [(ngModel)]="taskDetails.timeSpent"
-                        name="timeSpent" required>
+                        name="timeSpent" required min="0" #timeSpent="ngModel">
+                    <div class="text-danger" *ngIf="timeSpent.invalid && timeSpent.touched">Time Spent is required and
+                        must
+                        be 0 or more.</div>
                 </div>
             </div>
         </section>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary px-4">Submit</button>
+            <button type="submit" class="btn btn-primary px-4" [disabled]="taskForm.invalid">Submit</button>
             <button type="button" [routerLink]="['/project-details', taskDetails.projectId]"
-                class="btn btn-secondary px-4 ms-3">
-                Cancel
-            </button>
-
-
+                class="btn btn-secondary px-4 ms-3">Cancel</button>
         </div>
     </form>
+
 </div>

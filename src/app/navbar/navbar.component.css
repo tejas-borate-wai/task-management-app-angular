@@ -1,9 +1,12 @@
 /* Navbar Styling */
 /* Light Theme (custom) */
 .custom-navbar {
-    background: linear-gradient(135deg, #7b00ff, #146aff);
+    background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(20, 60, 100, 0.9));
     padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* subtle border */
 }
+
 
 /* Dark Theme */
 .dark-navbar {

@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -26,8 +27,29 @@ export class NavbarComponent {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+    Swal.fire({
+      title: 'Are you sure you want to logout?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, logout',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logout();
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Logged out!',
+          text: 'You have been logged out successfully.',
+          confirmButtonColor: '#3085d6',
+          timer: 1500,
+          showConfirmButton: false,
+        }).then(() => {
+          this.router.navigate(['/login']);
+        });
+      }
+    });
   }
 
   isDarkMode: boolean = false;

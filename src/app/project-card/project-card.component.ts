@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-project-card',
@@ -11,6 +12,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class ProjectCardComponent {
   @Input() project: any;
+  @Output() projectDeleted = new EventEmitter<string>();
 
   constructor(private router: Router) {}
 
@@ -24,19 +26,32 @@ export class ProjectCardComponent {
   }
 
   deleteProject(event: Event) {
+    event.preventDefault();
     event.stopPropagation();
 
-    // Show a confirmation dialog
-    const confirmDelete = confirm(
-      'Are you sure you want to delete this project?'
-    );
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This project will be permanently deleted!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#6c757d',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+        projects = projects.filter((p: any) => p.id !== this.project.id);
+        localStorage.setItem('projects', JSON.stringify(projects));
 
-    if (confirmDelete) {
-      let projects = JSON.parse(localStorage.getItem('projects') || '[]');
-      projects = projects.filter((p: any) => p.id !== this.project.id);
-      localStorage.setItem('projects', JSON.stringify(projects));
-
-      window.location.reload();
-    }
+        Swal.fire({
+          icon: 'success',
+          title: 'Deleted!',
+          text: 'The project has been deleted.',
+          confirmButtonColor: '#3085d6',
+        }).then(() => {
+          this.projectDeleted.emit(this.project.id);
+        });
+      }
+    });
   }
 }

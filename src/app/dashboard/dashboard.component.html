@@ -95,13 +95,17 @@
         <!-- Project List -->
         <div class="card-body p-2 mt-3">
             <div *ngIf="filteredProjects.length > 0; else noProjects">
-                <app-project-card *ngFor="let project of filteredProjects" [project]="project"></app-project-card>
+                <app-project-card *ngFor="let project of filteredProjects" [project]="project"
+                    (projectDeleted)="onProjectDeleted($event)">
+                </app-project-card>
+
             </div>
 
             <ng-template #noProjects>
                 <p class="text-center text-muted mt-3">No projects found.</p>
             </ng-template>
         </div>
+
     </div>
 
 </div>

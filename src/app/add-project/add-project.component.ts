@@ -3,10 +3,12 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID generator
+import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-project',
-  imports: [NavbarComponent, FormsModule, RouterModule],
+  imports: [NavbarComponent, FormsModule, RouterModule, CommonModule],
   templateUrl: './add-project.component.html',
   styleUrl: './add-project.component.css',
 })
@@ -59,11 +61,19 @@ export class AddProjectComponent {
   saveProject() {
     this.project.id = uuidv4(); // Generate unique ID
     this.calculateDueDate();
+
     let projects = JSON.parse(localStorage.getItem('projects') || '[]');
     projects.push(this.project);
     localStorage.setItem('projects', JSON.stringify(projects));
 
-    alert('Project Added Successfully!');
-    this.router.navigate(['/']);
+    // SweetAlert Success Message
+    Swal.fire({
+      icon: 'success',
+      title: 'Project Added',
+      text: 'Your project has been successfully added!',
+      confirmButtonColor: '#3085d6',
+    }).then(() => {
+      this.router.navigate(['/']); // Navigate after user clicks OK
+    });
   }
 }

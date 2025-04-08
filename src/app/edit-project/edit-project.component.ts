@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-project',
@@ -40,7 +41,15 @@ export class EditProjectComponent implements OnInit {
     if (index !== -1) {
       projects[index] = this.project;
       localStorage.setItem('projects', JSON.stringify(projects));
-      this.router.navigate(['/']);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Project updated successfully.',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        this.router.navigate(['/']);
+      });
     }
   }
 }

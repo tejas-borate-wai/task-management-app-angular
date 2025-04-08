@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -20,16 +21,31 @@ export class LoginComponent {
 
   login() {
     if (!this.username || !this.password) {
-      this.message = 'All fields are required!';
+      Swal.fire({
+        icon: 'warning',
+        title: 'Missing Fields',
+        text: 'All fields are required!',
+        confirmButtonColor: '#3085d6',
+      });
       return;
     }
 
     if (this.authService.login(this.username, this.password)) {
-      console.log('done');
-
-      this.router.navigate(['/']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        text: 'Welcome back!',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        this.router.navigate(['/']);
+      });
     } else {
-      this.message = 'Invalid username or password!';
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: 'Invalid username or password!',
+        confirmButtonColor: '#d33',
+      });
     }
   }
 }

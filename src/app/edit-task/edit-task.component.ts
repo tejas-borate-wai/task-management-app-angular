@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-task',
@@ -40,8 +41,15 @@ export class EditTaskComponent implements OnInit {
     if (taskIndex !== -1) {
       tasks[taskIndex] = { ...this.taskDetails, taskId: this.taskId };
       localStorage.setItem('tasks', JSON.stringify(tasks));
-      alert('Task Updated Successfully!');
-      this.router.navigate(['/project-details', tasks[taskIndex].projectId]);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Task updated successfully.',
+        confirmButtonColor: '#3085d6',
+      }).then(() => {
+        this.router.navigate(['/project-details', tasks[taskIndex].projectId]);
+      });
     }
   }
 }

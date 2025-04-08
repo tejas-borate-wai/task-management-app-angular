@@ -53,11 +53,6 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  removeProject(projectId: string) {
-    this.projects = this.projects.filter((p) => p.id !== projectId);
-    localStorage.setItem('projects', JSON.stringify(this.projects));
-  }
-
   sortAscending = true;
 
   sortProjects(field: string, order: string) {
@@ -84,5 +79,17 @@ export class DashboardComponent implements OnInit {
       if (valA > valB) return order === 'asc' ? 1 : -1;
       return 0;
     });
+  }
+
+  onProjectDeleted(deletedId: string) {
+    this.filteredProjects = this.filteredProjects.filter(
+      (p) => p.id !== deletedId
+    );
+
+    // Also update the main list if you maintain both
+    this.projects = this.projects.filter((p) => p.id !== deletedId);
+
+    // Optionally update localStorage too (if needed here)
+    localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 }
