@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   projects: any[] = [];
   searchQuery: string = '';
   filteredProjects: any[] = []; // for displaying search results
+  isDashboardShown = true;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -36,6 +37,11 @@ export class DashboardComponent implements OnInit {
     }
 
     this.loadProjects();
+
+    this.isDashboardShown = true;
+    setTimeout(() => {
+      this.isDashboardShown = false;
+    }, 5000);
   }
 
   loadProjects() {

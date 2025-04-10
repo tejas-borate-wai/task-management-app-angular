@@ -2,11 +2,12 @@
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
+    padding: 0px 15px !important;
+
     margin-bottom: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .project-icon {
@@ -35,6 +36,6 @@
 }
 
 .project-card:hover {
-    box-shadow: 0px 4px 60px 20px rgba(55, 0, 255, 0.15) !important;
+    border: 1px solid #000000 !important;
 
 }

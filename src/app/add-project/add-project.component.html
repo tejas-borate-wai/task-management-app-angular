@@ -1,89 +1,91 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-4">
-    <div class="card p-4 shadow-sm">
-        <h3 class="fw-bold mb-3">Add New Project</h3>
-        <form #projectForm="ngForm" (ngSubmit)="saveProject()" novalidate>
-            <!-- Title -->
-            <div class="mb-3">
-                <label class="form-label">Title</label>
-                <input type="text" class="form-control" [(ngModel)]="project.title" name="title" required
-                    #title="ngModel" />
-                <div class="text-danger" *ngIf="title.invalid && title.touched">
-                    Title is required.
-                </div>
-            </div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card w-100 shadow-sm" style="max-width: 900px;">
+        <div class="card-body">
+            <h2 class="text-center mb-4">Add New Project</h2>
+            <form #projectForm="ngForm" (ngSubmit)="saveProject()" novalidate>
 
-            <!-- Description -->
-            <div class="mb-3">
-                <label class="form-label">Description</label>
-                <textarea class="form-control" rows="3" [(ngModel)]="project.description" name="description" required
-                    #description="ngModel"></textarea>
-                <div class="text-danger" *ngIf="description.invalid && description.touched">
-                    Description is required.
-                </div>
-            </div>
-
-            <!-- Created By -->
-            <div class="mb-3">
-                <label class="form-label">Created By</label>
-                <input type="text" class="form-control" [(ngModel)]="project.createdBy" name="createdBy" disabled />
-            </div>
-
-            <!-- Project Manager -->
-            <div class="mb-3">
-                <label class="form-label">Project Manager</label>
-                <input type="text" class="form-control" [(ngModel)]="project.projectManager" name="projectManager"
-                    required #projectManager="ngModel" />
-                <div class="text-danger" *ngIf="projectManager.invalid && projectManager.touched">
-                    Project Manager is required.
-                </div>
-            </div>
-
-            <!-- Dates -->
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Start Date</label>
-                    <input type="date" class="form-control" [(ngModel)]="project.startDate" name="startDate" required
-                        #startDate="ngModel" />
-                    <div class="text-danger" *ngIf="startDate.invalid && startDate.touched">
-                        Start Date is required.
+                <!-- Title -->
+                <div class="mb-3">
+                    <label class="form-label">Title <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" [(ngModel)]="project.title" name="title"
+                        placeholder="Enter project title" required #title="ngModel" />
+                    <div class="text-danger" *ngIf="title.invalid && title.touched">
+                        Title is required.
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">End Date</label>
-                    <input type="date" class="form-control" [(ngModel)]="project.endDate" name="endDate" required
-                        #endDate="ngModel" />
-                    <div class="text-danger" *ngIf="endDate.invalid && endDate.touched">
-                        End Date is required.
-                    </div>
-                    <div class="text-danger"
-                        *ngIf="project.endDate && project.startDate && project.endDate < project.startDate">
-                        End Date cannot be earlier than Start Date.
+                <!-- Description -->
+                <div class="mb-4">
+                    <label class="form-label">Description <span class="text-danger">*</span></label>
+                    <textarea class="form-control" rows="3" [(ngModel)]="project.description" name="description"
+                        placeholder="Enter project description" required #description="ngModel"></textarea>
+                    <div class="text-danger" *ngIf="description.invalid && description.touched">
+                        Description is required.
                     </div>
                 </div>
-            </div>
 
-            <!-- Team Members -->
-            <div class="mb-3">
-                <label class="form-label">Team Members</label>
-                <input type="text" class="form-control" [(ngModel)]="project.teamMembers" name="teamMembers" required
-                    #teamMembers="ngModel" placeholder="Enter names separated by commas" />
-                <div class="text-danger" *ngIf="teamMembers.invalid && teamMembers.touched">
-                    Team Members is required.
+                <!-- Created By & Project Manager -->
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Created By <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="project.createdBy" name="createdBy"
+                            placeholder="Creator name" disabled />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Project Manager <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="project.projectManager"
+                            name="projectManager" placeholder="Enter project manager name" required
+                            #projectManager="ngModel" />
+                        <div class="text-danger" *ngIf="projectManager.invalid && projectManager.touched">
+                            Project Manager is required.
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Buttons -->
-            <button type="submit" class="btn btn-success"
-                [disabled]="projectForm.invalid || (project.endDate < project.startDate)">
-                Save Project
-            </button>
-            <a routerLink="/">
-                <button type="button" class="btn btn-secondary ms-3">Cancel</button>
-            </a>
-        </form>
+                <!-- Start Date, End Date, Team Members -->
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" [(ngModel)]="project.startDate" name="startDate"
+                            required #startDate="ngModel" />
+                        <div class="text-danger" *ngIf="startDate.invalid && startDate.touched">
+                            Start Date is required.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">End Date <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" [(ngModel)]="project.endDate" name="endDate" required
+                            #endDate="ngModel" />
+                        <div class="text-danger" *ngIf="endDate.invalid && endDate.touched">
+                            End Date is required.
+                        </div>
+                        <div class="text-danger"
+                            *ngIf="project.endDate && project.startDate && project.endDate < project.startDate">
+                            End Date cannot be earlier than Start Date.
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Team Members <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="project.teamMembers" name="teamMembers"
+                            placeholder="Enter names separated by commas" required #teamMembers="ngModel" />
+                        <div class="text-danger" *ngIf="teamMembers.invalid && teamMembers.touched">
+                            Team Members is required.
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Buttons -->
+                <div class="text-end mt-4 pb-3">
+                    <button type="submit" class="btn btn-primary px-4 me-2"
+                        [disabled]="projectForm.invalid || (project.endDate < project.startDate)">
+                        Save Project
+                    </button>
+                    <button type="button" routerLink="/" class="btn btn-secondary px-4">Cancel</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>

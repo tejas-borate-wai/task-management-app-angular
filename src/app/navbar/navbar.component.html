@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg" [ngClass]="isDarkMode ? 'dark-navbar' : 'custom-navbar'">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="#">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGqOtlnZxqJCQlvickXrFj6EdRwC7_KGZnmS4yNWDeA6sS_kAQQRiva_M&s=10"
-                height="45">
+            <img src="navLogo1.png" height="40">
         </a>
 
         <!-- Toggle Button for Mobile -->
@@ -25,8 +24,7 @@
 
                 <!-- Theme Toggle Switch -->
                 <li class="nav-item me-3 d-flex align-items-center">
-                    <i class="bi bi-circle-half me-1"></i>
-                    <span class="me-2 fw-bold text-light">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
+                    <span class="me-2  text-light">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
                     <div class="form-check form-switch m-0">
                         <input class="form-check-input" type="checkbox" id="themeToggle" (change)="toggleTheme()"
                             [checked]="isDarkMode" />
@@ -36,9 +34,9 @@
 
                 <!-- Profile Dropdown -->
                 <li class="nav-item dropdown" *ngIf="loggedInUser">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle fw-bolder fs-5" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <i class="bi bi-person-circle"></i> Profile
+                        <i class="bi bi-person-circle"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
@@ -48,9 +46,7 @@
                         <li>
                             <span class="dropdown-item"><strong>Username:</strong> {{ loggedInUser.username }}</span>
                         </li>
-                        <li>
-                            <span class="dropdown-item"><strong>Password:</strong> ***</span>
-                        </li>
+
                         <li>
                             <hr class="dropdown-divider" />
                         </li>

@@ -1,47 +1,64 @@
-          /* Light Theme */
+/* Light Theme */
 
-          /* Light Mode (default) */
-          .filtering-section {
-              background-color: #1e1e2f;
-          }
+/* Light Mode (default) */
+.filtering-section {
+    background: linear-gradient(135deg,
+            rgba(10, 25, 47, 0.9),
+            rgba(20, 60, 100, 0.9));
+}
 
-          /* Dark Mode */
-          body.dark-mode .filtering-section {
-              background-color: #1e1e2f;
-              /* example dark background */
-          }
+/* Dark Mode */
+body.dark-mode .filtering-section {
+    background-color: rgb(255, 255, 255) !important;
+    /* example dark background */
+}
 
-          body.light-mode {
-              background-color: #f8f9fa;
-              color: #212529;
-          }
+body.light-mode {
+    background-color: #f8f9fa;
+    color: #212529;
+}
 
-          body.light-mode .card,
-          body.light-mode .project-card,
-          body.light-mode .task-card {
-              background-color: #ffffff;
-              color: #212529;
-          }
+body.light-mode .card,
+body.light-mode .project-card,
+body.light-mode .task-card {
+    background-color: #ffffff;
+    color: #212529;
+}
 
-          /* Dark Theme */
-          body.dark-mode {
-              background-color: #121212;
-              color: #f1f1f1;
-          }
+/* Dark Theme */
+body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
 
-          body.dark-mode .card,
-          body.dark-mode .project-card,
-          body.dark-mode .task-card {
-              background-color: #1e1e1e;
-              color: #f1f1f1;
-          }
+body.dark-mode .card,
+body.dark-mode .project-card,
+body.dark-mode .task-card {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
 
-          body.dark-mode .btn-outline-primary {
-              color: #90caf9;
-              border-color: #90caf9;
-          }
+body.dark-mode .btn-outline-primary {
+    color: #90caf9;
+    border-color: #90caf9;
+}
 
-          body.dark-mode .btn-outline-danger {
-              color: #f28b82;
-              border-color: #f28b82;
-          }
+body.dark-mode .btn-outline-danger {
+    color: #f28b82;
+    border-color: #f28b82;
+}
+
+.light-blue {
+    background-color: #fcecc0;
+    color: #ffbb00 !important;
+}
+
+.light-green {
+    background-color: #ccd2fc;
+    color: #001eff !important;
+}
+
+.light-red {
+    background-color: #facce1;
+    color: #ff0073 !important;
+}

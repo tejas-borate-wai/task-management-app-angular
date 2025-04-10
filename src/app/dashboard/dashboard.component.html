@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-4">
+<div class="  container-fluid mt-4 px-lg-5">
     <div class="d-flex justify-content-end mb-3">
         <a routerLink="/add-project"><button class="btn btn-primary">
                 <i class="bi bi-plus-lg"></i> Add Project
             </button></a>
     </div>
 
-    <div class="card p-4 text-center shadow-sm">
+    <div *ngIf="isDashboardShown" class="card p-3 text-center shadow-sm">
         <h2 class="fw-bold">Welcome <span class="text-primary">{{loggedInUser | titlecase}}</span> To Your Dashboard
         </h2>
 
@@ -36,7 +36,9 @@
             </div>
         </div>
     </div> -->
-    <div class="card mt-4 shadow-sm">
+    <h4 class="mb-0 mt-2">All Projects</h4>
+
+    <div class="card mt-4 shadow-sm p-2">
         <!-- Header -->
         <div class="card-header text-white py-3 filtering-section">
             <div class="container-fluid">
@@ -44,7 +46,6 @@
 
                     <!-- Heading -->
                     <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-                        <h5 class="mb-0">All Projects</h5>
                     </div>
 
                     <!-- Controls -->
@@ -53,7 +54,7 @@
 
                             <!-- Search -->
                             <div class="col-12 col-md-4">
-                                <label class="text-white fw-semibold mb-1 d-block">Search</label>
+                                <!-- <label class="text-white fw-semibold mb-1 d-block">Search</label> -->
                                 <div class="input-group input-group-sm">
                                     <input type="text" class="form-control" placeholder="Search project..."
                                         [(ngModel)]="searchQuery" (input)="filterProjects()" />
@@ -63,10 +64,10 @@
 
                             <!-- Sort By -->
                             <div class="col-12 col-md-4">
-                                <label class="text-white fw-semibold mb-1 d-block">Sort By</label>
+                                <!-- <label class="text-white fw-semibold mb-1 d-block">Sort By</label> -->
                                 <select #sortField class="form-select form-select-sm"
                                     (change)="sortProjects(sortField.value, sortOrder.value)">
-                                    <option selected disabled>Select</option>
+                                    <option selected disabled>Sort By</option>
                                     <option value="title">Name</option>
                                     <option value="creationDate">Creation Date</option>
                                     <option value="startDate">Start Date</option>
@@ -76,11 +77,11 @@
 
                             <!-- Sort Order -->
                             <div class="col-12 col-md-4">
-                                <label class="text-white fw-semibold mb-1 d-block">Order</label>
+                                <!-- <label class="text-white fw-semibold mb-1 d-block">Order</label> -->
                                 <select #sortOrder class="form-select form-select-sm"
                                     (change)="sortProjects(sortField.value, sortOrder.value)">
-                                    <option value="asc">Ascending</option>
-                                    <option value="desc">Descending</option>
+                                    <option value="asc">A - Z</option>
+                                    <option value="desc">Z - A</option>
                                 </select>
                             </div>
 
@@ -92,12 +93,17 @@
 
 
 
+
         <!-- Project List -->
         <div class="card-body p-2 mt-3">
             <div *ngIf="filteredProjects.length > 0; else noProjects">
-                <app-project-card *ngFor="let project of filteredProjects" [project]="project"
-                    (projectDeleted)="onProjectDeleted($event)">
-                </app-project-card>
+
+                <!-- Scrollable Wrapper -->
+                <div class="scroll-container">
+                    <app-project-card *ngFor="let project of filteredProjects" [project]="project"
+                        (projectDeleted)="onProjectDeleted($event)">
+                    </app-project-card>
+                </div>
 
             </div>
 
@@ -105,6 +111,7 @@
                 <p class="text-center text-muted mt-3">No projects found.</p>
             </ng-template>
         </div>
+
 
     </div>
 

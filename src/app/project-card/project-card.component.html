@@ -1,6 +1,6 @@
-<div class="project-card container-fluid border rounded p-3 py-2 shadow-sm" (click)="viewProjectDetails()"
+<div class="project-card container-fluid border rounded px-3 py-5 shadow-sm" (click)="viewProjectDetails()"
     style="cursor: pointer;" title="click to view project and add task ! ">
-    <div class="row gy-3 align-items-center">
+    <div class="row gy-3 align-items-center py-1">
 
         <!-- Left Section: Icon + Title -->
         <div class="col-12 col-md-6 col-lg-3 d-flex">
@@ -24,31 +24,31 @@
 
         <!-- Dates -->
         <div class="col-12 col-md-6 col-lg-2 text-md-start text-center">
-            <p class="mb-1"><strong>Creation Date</strong></p>
-            <p class="badge date-badge bg-primary">{{ project.creationDate }}</p>
-            <p class="mb-1"><strong>Start Date</strong></p>
-            <p class="badge date-badge bg-info text-dark fw-bold">{{ project.startDate }}</p>
-            <p class="mb-1"><strong>End Date</strong></p>
-            <p class="badge date-badge bg-danger">{{ project.endDate }}</p>
+            <p class="mb-0   p-0 m-0"><strong>Creation Date</strong></p>
+            <p class="badge date-badge light-blue m-0">{{ project.creationDate }}</p>
+            <p class="mb-0  p-0 m-0"><strong>Start Date</strong></p>
+            <p class="badge date-badge light-green    m-0">{{ project.startDate }}</p>
+            <p class="mb-0  p-0 m-0"><strong>End Date</strong></p>
+            <p class="badge date-badge light-red  p-0 m-0 ">{{ project.endDate }}</p>
         </div>
 
         <!-- Team/Tasks -->
         <div class="col-12 col-sm-6 col-lg-2 text-md-start text-center">
-            <p class="mb-1"><strong>Team Member</strong></p>
-            <p class="text-primary fw-bold">{{ project.teamMembers }}</p>
-            <p class="mb-1"><strong>Tasks</strong></p>
-            <p class="text-warning fw-bold">0</p>
-            <p class="mb-1"><strong>Due Days</strong></p>
-            <p class="text-success fw-bold">{{ project.dueDate }}</p>
+            <p class="mb-0  p-0 m-0"><strong>Team Member</strong></p>
+            <p class="text-primary fw-bold  p-0 m-0">{{ project.teamMembers }}</p>
+            <p class="mb-0  p-0 m-0"><strong>Tasks</strong></p>
+            <p class="text-warning fw-bold  p-0 m-0">0</p>
+            <p class="mb-0  p-0 m-0"><strong>Due </strong></p>
+            <p class="text-success fw-bold  p-0 m-0">{{ project.dueDate }} Days</p>
         </div>
 
         <!-- Buttons -->
         <div
             class="col-12 col-lg-2 text-lg-end text-center d-flex justify-content-center justify-content-lg-end flex-wrap gap-2">
-            <button class="btn btn-outline-primary px-3" (click)="editProject($event)">
+            <button class="btn btn-outline-primary px-2" (click)="editProject($event)">
                 <i class="bi bi-pencil"></i> Edit
             </button>
-            <button class="btn btn-outline-danger px-3" (click)="deleteProject($event)">
+            <button class="btn btn-outline-danger px-2" (click)="deleteProject($event)">
                 <i class="bi bi-trash"></i> Delete
             </button>
         </div>

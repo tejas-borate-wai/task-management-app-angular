@@ -27,12 +27,13 @@
             <!-- Dates -->
             <div class="col-12 col-md-6 col-lg-2 text-md-start text-center">
                 <p class="mb-1"><strong>Creation Date</strong></p>
-                <p class="badge date-badge bg-primary">{{ project.creationDate }}</p>
+                <p class="badge date-badge light-blue">{{ project.creationDate }}</p>
                 <p class="mb-1"><strong>Start Date</strong></p>
-                <p class="badge date-badge bg-info text-dark fw-bold">{{ project.startDate }}</p>
+                <p class="badge date-badge light-green">{{ project.startDate }}</p>
                 <p class="mb-1"><strong>End Date</strong></p>
-                <p class="badge date-badge bg-danger">{{ project.endDate }}</p>
+                <p class="badge date-badge light-red">{{ project.endDate }}</p>
             </div>
+
 
             <!-- Team/Tasks -->
             <div class="col-12 col-sm-6 col-lg-2 text-md-start text-center">
@@ -40,7 +41,7 @@
                 <p class="text-primary fw-bold">{{ project.teamMembers }}</p>
                 <p class="mb-1"><strong>Task</strong></p>
                 <p class="text-warning fw-bold">{{ projectRelatedTasks.length }}</p>
-                <p class="mb-1"><strong>Due Date</strong></p>
+                <p class="mb-1"><strong>Due </strong></p>
                 <p class="text-success fw-bold">{{ project.dueDate }} Days</p>
             </div>
         </div>
@@ -48,7 +49,7 @@
         <!-- Buttons Row -->
         <div class="row mt-3 pb-2">
             <div
-                class="col-12 text-center text-md-start d-flex justify-content-center justify-content-md-start gap-3 flex-wrap">
+                class="col-12 text-center text-md-start d-flex justify-content-center justify-content-md-end gap-3 flex-wrap">
                 <a [routerLink]="'/add-task/' + project.id" class="btn btn-primary">Add Task</a>
                 <a routerLink="/" class="btn btn-secondary px-4">Back</a>
             </div>
@@ -118,7 +119,7 @@
 
         <!-- No Tasks Template -->
         <ng-template #noTasks>
-            <p class="text-muted text-center mt-3">No tasks assigned to this project yet.</p>
+            <p class=" text-center mt-3">No tasks assigned to this project yet.</p>
         </ng-template>
     </div>
 

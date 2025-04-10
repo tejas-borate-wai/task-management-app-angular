@@ -45,8 +45,10 @@
 }
 
 .nav-link:hover {
-    color: #ffeb3b !important;
+    /* color: #ffeb3b !important; */
     /* Yellow hover effect */
+    border-bottom: 1px solid rgb(255, 255, 255);
+    box-sizing: border-box;
 }
 
 /* Profile Dropdown */
