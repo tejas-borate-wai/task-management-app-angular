@@ -7,7 +7,9 @@
             </button></a>
     </div>
 
-    <div *ngIf="isDashboardShown" class="card p-3 text-center shadow-sm">
+    <!-- <div *ngIf="isDashboardShown" class="card p-3 text-center shadow-sm"> -->
+    <div class="card p-3 text-center shadow-sm">
+
         <h2 class="fw-bold">Welcome <span class="text-primary">{{loggedInUser | titlecase}}</span> To Your Dashboard
         </h2>
 
@@ -39,12 +41,10 @@
     <h4 class="mb-0 mt-2">All Projects</h4>
 
     <div class="card mt-4 shadow-sm p-2">
-        <!-- Header -->
         <div class="card-header text-white py-3 filtering-section">
             <div class="container-fluid">
                 <div class="row align-items-center">
 
-                    <!-- Heading -->
                     <div class="col-12 col-lg-3 mb-3 mb-lg-0">
                     </div>
 
@@ -98,7 +98,6 @@
         <div class="card-body p-2 mt-3">
             <div *ngIf="filteredProjects.length > 0; else noProjects">
 
-                <!-- Scrollable Wrapper -->
                 <div class="scroll-container">
                     <app-project-card *ngFor="let project of filteredProjects" [project]="project"
                         (projectDeleted)="onProjectDeleted($event)">

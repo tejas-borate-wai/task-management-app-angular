@@ -9,7 +9,6 @@ export class AuthService {
   signup(username: string, password: string, name: string): boolean {
     let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    // Check if username already exists
     if (users.some((user: any) => user.username === username)) {
       return false;
     }
@@ -28,7 +27,7 @@ export class AuthService {
       (user: any) => user.username === username && user.password === password
     );
     if (user) {
-      localStorage.setItem('loggedInUser', username); // Save logged-in user
+      localStorage.setItem('loggedInUser', username);
       return true;
     }
     return false;

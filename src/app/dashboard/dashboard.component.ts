@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   loggedInUser: string | null = '';
   projects: any[] = [];
   searchQuery: string = '';
-  filteredProjects: any[] = []; // for displaying search results
+  filteredProjects: any[] = [];
   isDashboardShown = true;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
     this.projects = storedProjects.filter(
       (project: any) => project.createdBy === this.loggedInUser
     );
-    this.filteredProjects = [...this.projects]; // initial view = all
+    this.filteredProjects = [...this.projects];
   }
 
   filterProjects() {
@@ -92,10 +92,8 @@ export class DashboardComponent implements OnInit {
       (p) => p.id !== deletedId
     );
 
-    // Also update the main list if you maintain both
     this.projects = this.projects.filter((p) => p.id !== deletedId);
 
-    // Optionally update localStorage too (if needed here)
     localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 }
